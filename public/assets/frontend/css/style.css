@@ -10,3 +10,11 @@
     width: 28px;
 }
 
+.link-unstyled{
+    text-decoration: none;
+    color: black;
+}
+
+.avater-image{
+    width: 100px !important;
+}

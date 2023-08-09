@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Frontend\DashboardController;
+use App\Http\Controllers\Frontend\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\Auth\AuthenticationController;
 
@@ -38,3 +40,7 @@ Route::middleware('user.auth')->group(function () {
         return "You have passed the middleware $id";
     });
 });
+
+Route::get('dashboard',[DashboardController::class,'profile'])->name('user.profile');
+Route::resource('post', PostController::class);
+Route::post('cke-image/upload',[PostController::class,'cke_upload'])->name('user.post.cke-image');

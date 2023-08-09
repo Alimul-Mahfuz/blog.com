@@ -1,3 +1,6 @@
+@section('title')
+    Home
+@endsection
 @extends('frontend.layouts.main')
 @section('content')
     {{-- carousel --}}
