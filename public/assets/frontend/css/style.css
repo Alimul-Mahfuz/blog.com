@@ -1,3 +1,12 @@
 .card{
     border-radius: 0px;
 }
+
+.bg-grey{
+    background-color: rgb(219, 219, 219);
+}
+
+.avater-icon{
+    width: 28px;
+}
+

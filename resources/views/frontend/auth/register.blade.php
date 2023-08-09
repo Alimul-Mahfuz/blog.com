@@ -1,34 +1,47 @@
 @extends('frontend.layouts.main')
 @push('css')
-
 @endpush
 @section('content')
     <div id="login-container" class="container min-vh-100 d-flex justify-content-center align-items-center">
-        <form class="w-75">
+        <form class="w-75" method="post" action="">
+            @csrf
             <h1>Register</h1>
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Full Name</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-              </div>
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                <label for="fullname" class="form-label">Full Name</label>
+                <input type="text" name="fullname" class="form-control" id="fullname" aria-describedby="user's full name">
+                @error('fullname')
+                    <div class="form-text text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
+                    @error('email')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
             </div>
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" id="password">
+                @error('password')
+                    <div class="form-text text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="password_confirmation" class="form-label">Confirm Password</label>
+                <input type="password" name="password_confirmation" class="form-control" id="password_confirmation">
+                @error('password_confirmation')
+                    <div class="form-text text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                <input type="checkbox" class="form-check-input" name="remember" id="remember_me">
+                <label class="form-check-label" for="remember_me">Remember me</label>
             </div>
             <p><button type="submit" class="me-3 btn btn-primary">Register</button></p>
-            <p>Already have an account? <a href="">Login Here</a></p>
-          </form>
+            <p>Already have an account? <a href="{{route('user.login')}}">Login Here</a></p>
+        </form>
     </div>
 @endsection
