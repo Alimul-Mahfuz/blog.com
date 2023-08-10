@@ -4,6 +4,8 @@ use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\Auth\AuthenticationController;
+use App\Mail\PasswordRecoveryEmail;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +46,8 @@ Route::middleware('user.auth')->group(function () {
 Route::get('dashboard',[DashboardController::class,'profile'])->name('user.profile');
 Route::resource('post', PostController::class);
 Route::post('cke-image/upload',[PostController::class,'cke_upload'])->name('user.post.cke-image');
+
+Route::get('/mailable', function () {
+    $user=User::find(1);
+    return new PasswordRecoveryEmail($user);
+});
