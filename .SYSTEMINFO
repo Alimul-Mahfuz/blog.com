@@ -1,0 +1,9 @@
+# Google Auth
+GOOGLE_CLIENT_ID=699191643476-4nqtqgbblh1una812f4ombvd8t6fvbdo.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=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
+GOOGLE_REDIRECT_URL=http://127.0.0.1:8000/auth/google/callback
+
+#Twitter
+TWITTER_CLIENT_ID=a1FSVU55X2h3MmVRZWcxamFOa2E6MTpjaQ
+TWITTER_CLIENT_SECRET=74FIVBd4MkowtFH5aJVIs1l-Jb1mpoG7gNcyDviNV1wbAddrgp
+TWITTER_REDIRECT_URL=https://127.0.0.1:8000/auth/twiiter/callback
