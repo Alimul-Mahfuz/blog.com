@@ -47,7 +47,7 @@ Route::get('dashboard',[DashboardController::class,'profile'])->name('user.profi
 Route::resource('post', PostController::class);
 Route::post('cke-image/upload',[PostController::class,'cke_upload'])->name('user.post.cke-image');
 
-Route::get('/mailable', function () {
-    $user=User::find(1);
-    return new PasswordRecoveryEmail($user);
-});
+// Route::get('/mailable', function () {
+//     $user=User::find(1);
+//     return new PasswordRecoveryEmail($user);
+// });

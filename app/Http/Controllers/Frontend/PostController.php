@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -11,7 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('frontend.pages.allblogs');
+        $posts=Post::where('user_id',Auth::user()->id)->get();
+        return view('frontend.pages.allblogs',compact('posts'));
     }
 
     /**
@@ -27,11 +31,29 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title'=>'required',
+            'cover_image'=>'required|mimes:jpg,png,jpeg,JPEG,PNG,JPG',
+        ]);
+        $post=new Post();
+        $post->user_id=Auth::user()->id;
+        $post->title=$request->title;
+        $post->description=$request->blog_body;
+        if($request->hasFile('cover_image')){
+            $file=$request->file('cover_image');
+            $ext=$file->getClientOriginalExtension();
+            $filename=time().'.'.$ext;
+            $file->storeAs('public/post_covers',$filename);
+            $path="post_covers/".$filename;
+            $post->cover_image=$path;
+
+        }
+        $post->save();
+        return redirect()->route('post.index')->with('success','Post submitted susccessfully!');
     }
 
     public function cke_upload(Request $request){
-        
+        // return response()->json(['url'=>'https://alimul-mahfuz.github.io/assets/images/hero.jpg']);
     }
 
     /**
