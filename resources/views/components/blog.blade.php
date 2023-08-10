@@ -9,7 +9,7 @@
                 <h5 class="card-title">{{$post->title}}</h5>
                 <p class="card-text">{!!Str::limit($post->description,'150')!!}</p>
                 <p class="card-text"><small class="text-body-secondary">Author:&nbsp;{{$post->user->name}}</small></p>
-                <a href="{{route('user.read',['id'=>$post->id])}}" class=""></a>
+                <a href="{{route('user.read',['id'=>$post->id])}}" class="stretched-link"></a>
             </div>
         </div>
     </div>

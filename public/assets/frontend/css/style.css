@@ -72,9 +72,7 @@ input{
     border: white;
     color: white;
 }
-.card .card-header{
-    background-color: #F0F8FF !important;
-}
+
 textarea{
     border-radius: 15% !important;
 }

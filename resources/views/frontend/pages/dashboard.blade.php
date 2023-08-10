@@ -7,7 +7,7 @@
 @endsection
 @section('user-content')
     <div class="col-12 mb-2 col-md-9">
-        <div class="card bg-cucumber-water border border-0">
+        <div class="card">
             <div class="card-header">
                 <img height="30" width="30" src="{{asset('assets/frontend/icons/system/user-icon.png')}}" alt="">&nbsp;&nbsp;<b>User's Profile</b>
             </div>
@@ -38,7 +38,7 @@
                                         <input type="email" class="form-control" id="email"
                                             value="{{ Auth::user()->email }}" aria-describedby="emailHelp">
                                     </div>
-                                    <button type="submit" class="btn btn-primary float-end">Submit</button>
+                                    <button type="submit" class="btn btn-primary float-end">Save</button>
                                 </form>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <div class="card border border-0">
+                        <div class="card">
                             <div class="card-header">
                                 <img height="30" width="30" src="{{asset('assets/frontend/icons/system/lock-icon.png')}}" alt="">&nbsp;&nbsp;<b>Change password</b>
                             </div>
@@ -76,7 +76,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <div class="card border border-0">
+                        <div class="card">
                             <div class="card-header d-flex justify-content-between align-items-center">
                                 <div><img height="30" width="30" src="{{asset('assets/frontend/icons/system/delete-icon.png')}}" alt="">&nbsp;&nbsp;Delete Your account</div>
                                 <div><button class="btn btn-danger float-end bg-bloody-mimosa">Delete Account</button></div>

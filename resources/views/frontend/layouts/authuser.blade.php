@@ -17,7 +17,7 @@
     <main class="container mt-3">
         <div class="row">
             <div class="col-12 mb-2 col-md-3">
-                <div class="card">
+                <div class="card frosted-glass">
                     <ul class="list-group rounded rounded-0 list-group-flush">
                         <li class="list-group-item {{ request()->routeIs('post.create') ? 'bg-alice-blue' : '' }}"><a
                                 href="{{ route('post.create') }}"

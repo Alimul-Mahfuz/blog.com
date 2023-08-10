@@ -10,11 +10,11 @@
     </style>
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
     <div class="col-12 mb-2 col-md-9">
-        <div class="card border border-0">
-            <div class="card-header border border-bottom-0">
+        <div class="card">
+            <div class="card-header">
                 New Blog
             </div>
-            <div class="card-body px-0">
+            <div class="card-body">
                 <form action="{{ route('post.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
