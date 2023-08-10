@@ -23,6 +23,7 @@ class User extends Authenticatable
         'password',
         'profile_image'
     ];
+    
 
     /**
      * The attributes that should be hidden for serialization.
@@ -43,4 +44,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function post(){
+        return $this->hasMany(Post::class,'user_id');
+    }
 }

@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Frontend;
+
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -14,8 +16,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts=Post::where('user_id',Auth::user()->id)->get();
-        return view('frontend.pages.allblogs',compact('posts'));
+        $posts = Post::where('user_id', Auth::user()->id)->get();
+        return view('frontend.pages.allblogs', compact('posts'));
     }
 
     /**
@@ -32,27 +34,28 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>'required',
-            'cover_image'=>'required|mimes:jpg,png,jpeg,JPEG,PNG,JPG',
+            'title' => 'required',
+            'cover_image' => 'required|mimes:jpg,png,jpeg,JPEG,PNG,JPG',
         ]);
-        $post=new Post();
-        $post->user_id=Auth::user()->id;
-        $post->title=$request->title;
-        $post->description=$request->blog_body;
-        if($request->hasFile('cover_image')){
-            $file=$request->file('cover_image');
-            $ext=$file->getClientOriginalExtension();
-            $filename=time().'.'.$ext;
-            $file->storeAs('public/post_covers',$filename);
-            $path="post_covers/".$filename;
-            $post->cover_image=$path;
+        $post = new Post();
+        $post->user_id = Auth::user()->id;
+        $post->title = $request->title;
+        $post->description = $request->blog_body;
+        if ($request->hasFile('cover_image')) {
+            $file = $request->file('cover_image');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->storeAs('public/post_covers', $filename);
+            $path = "post_covers/" . $filename;
+            $post->cover_image = $path;
 
         }
         $post->save();
-        return redirect()->route('post.index')->with('success','Post submitted susccessfully!');
+        return redirect()->route('post.index')->with('success', 'Post submitted susccessfully!');
     }
 
-    public function cke_upload(Request $request){
+    public function cke_upload(Request $request)
+    {
         // return response()->json(['url'=>'https://alimul-mahfuz.github.io/assets/images/hero.jpg']);
     }
 
@@ -61,7 +64,8 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $post = Post::find($id);
+        return view('frontend.pages.viewblog', compact('post'));
     }
 
     /**
@@ -69,7 +73,8 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $post = Post::find($id);
+        return view('frontend.pages.editblog', compact('post'));
     }
 
     /**
@@ -77,7 +82,30 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'cover_image' => 'mimes:jpg,png,jpeg,JPEG,PNG,JPG',
+        ]);
+        // dd ($request->all());
+        $post = Post::find($id);
+        $post->title = $request->title;
+        $post->description = $request->blog_body;
+        if ($request->hasFile('cover_image')) {
+            if (Storage::exists('app/' . $post->cover_image)) {
+                Storage::delete('app/' . $post->cover_image);
+                dd("HELLO");
+            } else {
+                $file = $request->file('cover_image');
+                $ext = $file->getClientOriginalExtension();
+                $filename = time() . '.' . $ext;
+                $file->storeAs('public/post_covers', $filename);
+                $path = "post_covers/" . $filename;
+                $post->cover_image = $path;
+            }
+
+        }
+        $post->save();
+        return redirect()->back()->with('success', 'Post updated susccessfully!');
     }
 
     /**
@@ -85,6 +113,6 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return "Hi from destroy method";
     }
 }

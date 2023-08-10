@@ -10,33 +10,32 @@
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}">
     @stack('css')
 </head>
+
 <body>
     {{-- Nabar --}}
     @include('frontend.layouts.navbar')
-    <main class="container">
-        <div>
-            <div class="row">
-                <div class="col-12 mb-2  col-md-3">
-                    <div class="card">
-                        <ul class="list-group rounded rounded-0 list-group-flush">
-                            <li class="list-group-item {{ request()->routeIs('post.create') ? 'bg-secondary' : '' }}"><a
-                                    href="{{ route('post.create') }}"
-                                    class="link-unstyled {{ request()->routeIs('post.create') ? 'text-white' : '' }}">Create
-                                    a new</a></li>
-                            <li class="list-group-item {{ request()->routeIs('post.index') ? 'bg-secondary' : '' }}"><a
-                                    href="{{ route('post.index') }}"
-                                    class="link-unstyled {{ request()->routeIs('post.index') ? 'text-white' : '' }}">My
-                                    Blogs</a></li>
-                            <li class="list-group-item {{ request()->routeIs('user.profile') ? 'bg-secondary' : '' }}"><a
-                                    href="{{ route('user.profile') }}"
-                                    class="link-unstyled {{ request()->routeIs('user.profile') ? 'text-white' : '' }}">My
-                                    Profile</a></li>
-                            {{-- <li class="list-group-item {{request()->routeIs('post.get-inactive') ? 'bg-secondary':''}}"><a href="{{route('post.get-inactive')}}" class="link-unstyled {{request()->routeIs('post.create') ? 'text-white':''}}">Inactive Blogs</a></li> --}}
-                        </ul>
-                    </div>
+    <main class="container mt-3">
+        <div class="row">
+            <div class="col-12 mb-2 col-md-3">
+                <div class="card">
+                    <ul class="list-group rounded rounded-0 list-group-flush">
+                        <li class="list-group-item {{ request()->routeIs('post.create') ? 'bg-alice-blue' : '' }}"><a
+                                href="{{ route('post.create') }}"
+                                class="link-unstyled {{ request()->routeIs('post.create') ? 'text-dark fw-bold' : '' }}">Create
+                                a new</a></li>
+                        <li class="list-group-item {{ request()->routeIs('post.index') ? 'bg-alice-blue' : '' }}"><a
+                                href="{{ route('post.index') }}"
+                                class="link-unstyled {{ request()->routeIs('post.index') ? 'text-dark fw-bold' : '' }}">My
+                                Blogs</a></li>
+                        <li class="list-group-item {{ request()->routeIs('user.profile') ? 'bg-alice-blue' : '' }}"><a
+                                href="{{ route('user.profile') }}"
+                                class="link-unstyled {{ request()->routeIs('user.profile') ? 'text-dark fw-bold' : '' }}">My
+                                Profile</a></li>
+                        {{-- <li class="list-group-item {{request()->routeIs('post.get-inactive') ? 'bg-secondary':''}}"><a href="{{route('post.get-inactive')}}" class="link-unstyled {{request()->routeIs('post.create') ? 'text-white':''}}">Inactive Blogs</a></li> --}}
+                    </ul>
                 </div>
-                @yield('user-content')
             </div>
+            @yield('user-content')
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"

@@ -14,7 +14,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $post->title }}</h5>
                             <p class="card-text"> {!! Str::limit($post->description, 100) !!}</p>
-                            <p><small><a href="">Read more</a></small>&nbsp;&nbsp;<small><a href="">Edit</a></small></p>
+                            <p><small><a href="{{route('post.show',['post'=>$post->id])}}">Read more</a></small>&nbsp;&nbsp;<small><a href="{{route('post.edit',['post'=>$post->id])}}">Edit</a></small></p>
                         </div>
                     </div>
                 </div>

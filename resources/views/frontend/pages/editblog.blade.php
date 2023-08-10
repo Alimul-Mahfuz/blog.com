@@ -1,5 +1,5 @@
 @section('title')
-    Create New
+    Edit Blog Page
 @endsection
 @extends('frontend.layouts.authuser')
 @section('user-content')
@@ -10,17 +10,27 @@
     </style>
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
     <div class="col-12 mb-2 col-md-9">
-        <div class="card border border-0">
-            <div class="card-header border border-bottom-0">
-                New Blog
+        <div class="card">
+            @if (session('success'))
+                <x-alert type='success'>
+                    {{ session('success') }}
+                </x-alert>
+            @endif
+            <div class="card-header">
+                Edit Blog
             </div>
-            <div class="card-body px-0">
-                <form action="{{ route('post.store') }}" method="post" enctype="multipart/form-data">
+            <div class="card-body">
+                <img src="{{ asset('storage/' . $post->cover_image) }}" style="max-height: 300px;" class="img-fluid w-100 mb-3"
+                    alt="...">
+                {{-- PUT method is not directly support. --}}
+                <form action="{{ route('post.update', ['post' => $post->id]) }}" method="post"
+                    enctype="multipart/form-data">
+                    @method('patch')
                     @csrf
                     <div class="mb-3">
                         <label for="blog-title" class="form-label">Title of your blog</label>
-                        <input type="text" name="title" class="form-control" id="blog-title"
-                            placeholder="Your blog's title">
+                        <input type="text" name="title" value="{{ $post->title }}" class="form-control"
+                            id="blog-title" placeholder="Your blog's title">
                         @error('title')
                             <div class="form-text text-danger">{{ $message }}</div>
                         @enderror
@@ -35,10 +45,13 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Write your blogs</label>
-                        <textarea class="form-control" name="blog_body" id="editor"></textarea>
+                        <textarea class="form-control" name="blog_body" id="editor">{{ $post->description }}</textarea>
                     </div>
                     <div class="mb-3">
-                        <button class="btn btn-primary float-end" type="submit">Create</button>
+                        <div class="float-end">
+                            <button class="d-inline-block btn btn-primary" type="submit">Save</button>
+                            <a href="{{route('post.destroy',['post'=>$post->id])}}" class="d-inline-block btn btn-danger">Delete</a>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -164,5 +177,7 @@
             .catch(error => {
                 console.error(error);
             });
+
+        // To viewing the upload file name
     </script>
 @endsection

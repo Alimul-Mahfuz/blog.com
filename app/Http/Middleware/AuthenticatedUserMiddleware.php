@@ -31,6 +31,9 @@ class AuthenticatedUserMiddleware
         // if(!$request->has('name')){
         //     return redirect()->route('home');
         // }
+        if(!Auth::check()){
+            return redirect()->route('user.login');
+        }
         return $next($request);
     }
 }

@@ -31,11 +31,13 @@ class AuthenticationController extends Controller
         ]);
         $do_remember = $request->has('remember');
         if (Auth::attempt($request->only('email', 'password'), $do_remember)) {
-            return 'login successful';
+            return redirect()->route('home');
         }
 
     }
-
+    function reset_request(){
+        return view('frontend.auth.reset-request');
+    }
     function google_singin_redirect()
     {
         return Socialite::driver('google')->redirect();

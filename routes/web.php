@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\DashboardController;
+use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\Auth\AuthenticationController;
@@ -18,9 +19,7 @@ use App\Models\User;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/',[HomeController::class,'index'])->name('home');
 
 
 Route::post('logout', [AuthenticationController::class, 'logout'])->name('user.logout');
@@ -29,6 +28,8 @@ Route::middleware('user.guest')->group(function () {
     Route::get('login', [AuthenticationController::class, 'login'])->name('user.login');
     Route::get('register', [AuthenticationController::class, 'register'])->name('user.register');
     Route::post('register', [AuthenticationController::class, 'post_register']);
+    Route::get('reset-request',[AuthenticationController::class,'reset_request'])->name('user.password-reset-request');
+
     //Google
     Route::get('/auth/google/redirect', [AuthenticationController::class, 'google_singin_redirect'])->name('user.google_redirect');
     Route::get('/auth/google/callback', [AuthenticationController::class, 'google_singin_callback'])->name('user.google_callback');
@@ -38,15 +39,13 @@ Route::middleware('user.guest')->group(function () {
 });
 
 Route::middleware('user.auth')->group(function () {
-    Route::get('/test-auth/{id}', function ($id) {
-        return "You have passed the middleware $id";
-    });
+    Route::get('dashboard',[DashboardController::class,'profile'])->name('user.profile');
+    Route::resource('post', PostController::class);
+    Route::post('cke-image/upload',[PostController::class,'cke_upload'])->name('user.post.cke-image');
 });
 
-Route::get('dashboard',[DashboardController::class,'profile'])->name('user.profile');
-Route::resource('post', PostController::class);
-Route::post('cke-image/upload',[PostController::class,'cke_upload'])->name('user.post.cke-image');
 
+Route::get('read-blog/{id}',[HomeController::class,'read_blog'])->name('user.read');
 // Route::get('/mailable', function () {
 //     $user=User::find(1);
 //     return new PasswordRecoveryEmail($user);

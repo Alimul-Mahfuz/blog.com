@@ -3,7 +3,7 @@
 @endpush
 @section('content')
     <div id="login-container" class="container min-vh-100 d-flex justify-content-center align-items-center">
-        <form class="w-75" method="post" action="">
+        <form class="w-75 rounded rounded-3 frosted-glass p-5" method="post" action="">
             @csrf
             <h1>Register</h1>
             <div class="mb-3">

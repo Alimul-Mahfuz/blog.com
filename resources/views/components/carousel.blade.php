@@ -5,23 +5,23 @@
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
-  <div class="carousel-inner">
+  <div class="carousel-inner" style="">
     <div class="carousel-item active">
-      <img src="https://picsum.photos/1280/480" class="d-block w-100" alt="...">
+      <img src="{{asset('assets/frontend/images/f-1.jpg')}}" class="d-block w-100 carousel-img-height" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>First slide label</h5>
         <p>Some representative placeholder content for the first slide.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="https://picsum.photos/1280/480" class="d-block w-100" alt="...">
+      <img src="{{asset('assets/frontend/images/f-2.jpg')}}" class="d-block w-100 carousel-img-height" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>Second slide label</h5>
         <p>Some representative placeholder content for the second slide.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="https://picsum.photos/1280/480" class="d-block w-100" alt="...">
+      <img src="{{asset('assets/frontend/images/f-3.jpg')}}" class="d-block w-100 carousel-img-height" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>Third slide label</h5>
         <p>Some representative placeholder content for the third slide.</p>
