@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -22,6 +23,16 @@ class AuthenticationController extends Controller
     function login()
     {
         return view('frontend.auth.login');
+    }
+    function login_post(Request $request){
+        $request->validate([
+            'email'=>'required',
+            'password'=>'required',
+        ]);
+        $do_remember = $request->has('remember');
+        if (Auth::attempt($request->only('email', 'password'), $do_remember)) {
+            return redirect()->route('home');
+        }
     }
     function register()
     {
@@ -131,5 +142,27 @@ class AuthenticationController extends Controller
             'email'=>$request->email,
         ]);
     }
+
+    function reset_password($email,$token){
+        $token=PasswordResetToken::where('email',$email)->where('token',$token)->first();
+        if($token){
+            return view('frontend.auth.new-password',compact('email'));
+        }
+        return "Invalid Request!";
+    }
+
+    function update_password(Request $request){
+        $request->validate([
+            'email'=>'required',
+            'password'=>'required|confirmed'
+        ]);
+        $user=User::where('email',$request->email)->first();
+        $user->password=Hash::make($request->password);
+        $user->save();
+        DB::table('password_reset_tokens')->where('email',$request->email)->delete();
+        return redirect()->route('user.login')->with('success','Password updated successfully!');
+
+    }
+
 
 }
