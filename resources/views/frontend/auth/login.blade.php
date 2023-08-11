@@ -4,10 +4,6 @@
         .social-icon {
             width: 25px;
         }
-
-        /* .social-btn .col-md-4 {
-        width: 25.333333%;
-        } */
     </style>
 @endpush
 @section('content')
@@ -43,7 +39,7 @@
                     </div>
                 </div>
             </div>
-            <p><button type="submit" class="me-3 btn btn-primary">Login</button><a href="">Frogot password?</a></p>
+            <p><button type="submit" class="me-3 btn btn-primary">Login</button><a href="{{route('user.password-reset-request')}}">Frogot password?</a></p>
             <p>Don't have an account yet? <a href="{{ route('user.register') }}">Create an account</a></p>
         </form>
     </div>

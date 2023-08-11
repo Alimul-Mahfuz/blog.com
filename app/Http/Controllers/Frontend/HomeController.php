@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     function index(){
-        $posts=Post::all();
+        $posts=Post::all() ?? '';
+        // dd($posts);
         return view('welcome',compact('posts'));
     }
 
