@@ -6,6 +6,7 @@
     {{-- carousel --}}
     <x-carousel class="mb-3"/>
     <div class="blogs">
+        {{-- {{$posts}} --}}
         <x-categoryholder :posts="$posts" />
     </div>
 @endsection

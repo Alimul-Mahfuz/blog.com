@@ -29,6 +29,7 @@ Route::middleware('user.guest')->group(function () {
     Route::get('register', [AuthenticationController::class, 'register'])->name('user.register');
     Route::post('register', [AuthenticationController::class, 'post_register']);
     Route::get('reset-request',[AuthenticationController::class,'reset_request'])->name('user.password-reset-request');
+    Route::post('reset-request',[AuthenticationController::class,'reset_request_post']);
 
     //Google
     Route::get('/auth/google/redirect', [AuthenticationController::class, 'google_singin_redirect'])->name('user.google_redirect');

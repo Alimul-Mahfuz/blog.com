@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
 
 class AuthenticationController extends Controller
@@ -99,6 +100,23 @@ class AuthenticationController extends Controller
         session()->flush();
         session()->regenerate();
         return redirect()->route('home');
+    }
+
+    function reset_request_post(Request $request){
+        $validator=Validator::make($request->all(),[
+            'email'=>'required'
+        ]);
+        if($validator->failed()){
+            return response()->json(['error'=>$validator->errors()]);
+        }
+        $is_exists=User::where('email',$request->email)->first();
+        if(!$is_exists){
+            return response()->json(['is_exists'=>false]);
+        }
+        return response()->json([
+            'email'=>$request->email,
+            'is_exists'=>true,
+        ]);
     }
 
 }
