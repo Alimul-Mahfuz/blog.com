@@ -31,13 +31,13 @@
                 <div class="social-btn row g-3 justify-content-between align-items-center">
                     <div class="col-12">
                         <a href="{{ route('user.google_redirect') }}"><button type="button"
-                                class="btn btn-outline-secondary w-100"><img class="social-icon me-1"
+                                class="btn btn-outline-secondary w-100 text-white"><img class="social-icon me-1"
                                     src="{{ asset('assets/frontend/icons/social/google.png') }}" alt=""><small>Sing with
                                         Google</small></span></button></a>
                     </div>
                     <div class="col-12">
                         <a href="{{ route('user.twitter_redirect') }}"><button type="button"
-                                class="btn btn-outline-secondary w-100"><img class="social-icon me-1"
+                                class="btn btn-outline-secondary w-100 text-white"><img class="social-icon me-1"
                                     src="{{ asset('assets/frontend/icons/social/twitters-sm.png') }}" alt=""><small>Sing
                                         with twitter</small></button></a>
                     </div>

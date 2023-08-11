@@ -65,34 +65,33 @@ class AuthenticationController extends Controller
         }
     }
 
-    // Non functional code
-    function twitter_singin_redirect()
-    {
-        return Socialite::driver('twitter-oauth-2')->redirect();
-    }
-    function twitter_singin_callback()
-    {
-        try {
-            $user = Socialite::driver('twitter-oauth-2')->user();
-            dd ($user);
-            // $email = $user->email;
-            // $existingUser = User::where('email', $email)->first();
-            // if ($existingUser) {
-            //     Auth::login($existingUser);
-            // } else {
-            //     $newuser = User::create([
-            //         'name' => $user->name,
-            //         'email' => $user->email,
-            //         'profile_image' => $user->avatar,
-            //     ]);
-            //     Auth::login($newuser);
-            // }
-            // return redirect()->route('home');
-        } catch (\Throwable $th) {
-            dd($th->getMessage());
-        }
-    }
-    // End non functional code
+    // Handel twitter oauth2 service
+    // function twitter_singin_redirect()
+    // {
+    //     return Socialite::driver('twitter-oauth-2')->redirect();
+    // }
+    // function twitter_singin_callback()
+    // {
+    //     try {
+    //         $user = Socialite::driver('twitter-oauth-2')->user();
+    //         dd ($user);
+    //         $email = $user->email;
+    //         $existingUser = User::where('email', $email)->first();
+    //         if ($existingUser) {
+    //             Auth::login($existingUser);
+    //         } else {
+    //             $newuser = User::create([
+    //                 'name' => $user->name,
+    //                 'email' => $user->email,
+    //                 'profile_image' => $user->avatar,
+    //             ]);
+    //             Auth::login($newuser);
+    //         }
+    //         return redirect()->route('home');
+    //     } catch (\Throwable $th) {
+    //         dd($th->getMessage());
+    //     }
+    // }
 
     function logout(Request $request){
         Auth::logout();
