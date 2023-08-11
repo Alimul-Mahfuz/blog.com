@@ -4,10 +4,15 @@ namespace App\Http\Controllers\Frontend\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterFormRequest;
+use App\Mail\PasswordRecoveryEmail;
+use App\Models\PasswordResetToken;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -103,19 +108,27 @@ class AuthenticationController extends Controller
     }
 
     function reset_request_post(Request $request){
+        // return response()->json("Hello Peter");
         $validator=Validator::make($request->all(),[
             'email'=>'required'
         ]);
-        if($validator->failed()){
-            return response()->json(['error'=>$validator->errors()]);
+        // return response()->json($request->all());
+        if($validator->fails()){
+            return response()->json($validator->errors(),422);
         }
         $is_exists=User::where('email',$request->email)->first();
         if(!$is_exists){
             return response()->json(['is_exists'=>false]);
         }
+        $resetToken=new PasswordResetToken();
+        $resetToken->email=$request->email;
+        $resetToken->token=Str::random(64);
+        $resetToken->created_at=Carbon::now();
+        $resetToken->save();
+        Mail::to($request->email)->send(new PasswordRecoveryEmail($resetToken));
         return response()->json([
-            'email'=>$request->email,
             'is_exists'=>true,
+            'email'=>$request->email,
         ]);
     }
 
