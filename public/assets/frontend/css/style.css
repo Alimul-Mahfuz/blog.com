@@ -49,30 +49,50 @@
     background: linear-gradient(-203deg, rgba(96, 96, 149, 0.333) 0%, rgba(131, 149, 181, 0.054) 43%, rgba(176, 255, 181, 0.273) 100%);
 }
 
-#login-container{
-    background-image: url('../images/login-bg.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+.frosted-nav {
+    background: rgba(203, 189, 228, 0.556);
+    /* background: linear-gradient(203deg, rgba(247, 63, 225, 1) 0%, rgba(159, 72, 230, 1) 43%, rgba(90, 50, 152, 1) 100%); */
+    /* background: rgba(255, 255, 255, 0.543); */
+    /* Transparent white background */
+    backdrop-filter: blur(10px);
+}
+
+footer {
+    background: rgba(53, 39, 79, 0.733);
+    background: linear-gradient(203deg, rgb(89, 40, 106) 0%, rgba(159, 72, 230, 1) 43%, rgba(90, 50, 152, 1) 100%);
+    backdrop-filter: blur(10px);
+}
+
+.frosted {
+    background: rgba(255, 255, 255, 0.739);
+    /* Transparent white background */
+    backdrop-filter: blur(10px);
+}
+
+.frosted-sidebar {
+    background: rgba(255, 255, 255, 0.543);
+    /* Transparent white background */
+    backdrop-filter: blur(10px);
 }
 
 .frosted-glass {
-    background: rgba(255, 255, 255, 0.5); /* Transparent white background */
-    backdrop-filter: blur(10px); /* Apply blur effect */
-    /* width: 300px;
-    height: 300px;  */
+    background: rgba(255, 255, 255, 0.5);
+    /* Transparent white background */
+    backdrop-filter: blur(10px);
+    /* Apply blur effect */
+    width: 430px;
+    /* height: 300px;  */
 }
 
-input{
+input {
     background-color: rgb(225 240 255 / 35%) !important;
 }
 
-.btn.btn-primary{
-    background-color: #614b36 !important;
-    border: white;
-    color: white;
+.btn.btn-primary {
+    background: rgb(247, 63, 225);
+    background: linear-gradient(203deg, rgba(247, 63, 225, 1) 0%, rgba(159, 72, 230, 1) 43%, rgba(90, 50, 152, 1) 100%);
 }
 
-textarea{
+textarea {
     border-radius: 15% !important;
 }

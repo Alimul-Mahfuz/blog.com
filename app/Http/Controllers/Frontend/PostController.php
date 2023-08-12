@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::where('user_id', Auth::user()->id)->get();
+        $posts = Post::where('user_id', Auth::user()->id)->paginate(6);
         return view('frontend.pages.allblogs', compact('posts'));
     }
 

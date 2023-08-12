@@ -1,8 +1,8 @@
+document.getElementById('profile_image').addEventListener('change', function () {
+  let savebtn = document.getElementById('btn-image-save');
+  savebtn.classList.remove('d-none');
+})
 document.getElementById('profie-img-upload').addEventListener('submit', async function (e) {
-  document.getElementById('profile_image').addEventListener('change', function () {
-    let savebtn = document.getElementById('btn-image-save');
-    savebtn.classList.remove('d-none');
-  })
   e.preventDefault();
   let formdata = new FormData(this);
   try {
@@ -55,9 +55,11 @@ document.getElementById('personal-details-form').addEventListener('submit',async
     if(!response.ok){
       if(response.status==422){
         let perviousError=document.querySelectorAll('.personal-update-error')
-        perviousError.forEach((errofield)=>{
-          errofield.textContent=''
-        })
+        console.log(perviousError);
+        // perviousError.forEach((errofield)=>{
+        //   console.log(errofield.innerText)
+        //   errofield.textContent='';
+        // })
         Object.entries(data).forEach(([k,v])=>{
           let parent=document.getElementById(k).parentNode;
           let errdiv=document.createElement('div')

@@ -1,9 +1,17 @@
 @extends('frontend.layouts.main')
 @push('css')
+    <style>
+        #login-container {
+            background-image: url("{{ asset('assets/frontend/images/login-bg.png') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
 @endpush
 @section('content')
     <div id="login-container" class="container min-vh-100 d-flex justify-content-center align-items-center">
-        <form class="w-75 rounded rounded-3 frosted-glass p-5" method="post" action="">
+        <form class="rounded rounded-3 frosted-glass p-5" method="post" action="">
             @csrf
             <h1>Register</h1>
             <div class="mb-3">
@@ -41,7 +49,7 @@
                 <label class="form-check-label" for="remember_me">Remember me</label>
             </div>
             <p><button type="submit" class="me-3 btn btn-primary">Register</button></p>
-            <p>Already have an account? <a href="{{route('user.login')}}">Login Here</a></p>
+            <p>Already have an account? <a href="{{ route('user.login') }}">Login Here</a></p>
         </form>
     </div>
 @endsection

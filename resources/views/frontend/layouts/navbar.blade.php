@@ -1,4 +1,4 @@
-<nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary shadow-sm">
+<nav class="navbar sticky-top navbar-expand-lg shadow-sm frosted-nav">
     <div class="container">
         <a class="navbar-brand" href="{{route('home')}}">Blog.com</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
