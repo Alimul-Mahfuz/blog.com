@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -71,9 +72,26 @@ class DashboardController extends Controller
 
     function update_password(Request $request){
         $validator=Validator::make($request->all(),[
-            'old_password'=>'required',
+            'current_password'=>'required',
             'password'=>'required|confirmed',
         ]);
+        if($validator->fails()){
+            return response()->json($validator->errors(),422);
+        }
+        $user=User::find(Auth::user()->id);
+        $isok=Hash::check($request->current_password,$user->password);
+        if($isok){
+            $user->password=Hash::make($request->password);
+            return response()->json([
+                'status'=>true,
+                'message'=>"Password changed successfully!"
+            ]);
+        }
+        return response()->json([
+            'status'=>false,
+            'message'=>"Current password mismatched"
+        ]);
         
+
     }
 }

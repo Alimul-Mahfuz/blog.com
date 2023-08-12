@@ -82,7 +82,36 @@ document.getElementById('password-update').addEventListener('submit',async funct
   e.preventDefault()
   let formdata=new FormData(this)
   try {
-    const response=await fetch('')
+    const response=await fetch('password-update',{
+      method:'POST',
+      body:formdata,
+      headers:{
+        'X-CSRF-TOKEN':formdata.get('_token'),
+      }
+    })
+    const data=await response.json();
+    const status=document.getElementById('password-info-status');
+    status.innerHTML=''
+    if(!response.ok){
+      if(response.status==422){
+        let perviousError=document.querySelectorAll('.personal-update-error')
+        perviousError.forEach((errofield)=>{
+          errofield.textContent=''
+        })
+        Object.entries(data).forEach(([k,v])=>{
+          let parent=document.getElementById(k).parentNode;
+          let errdiv=document.createElement('div')
+          errdiv.classList.add('text-danger','password-update-error');
+          errdiv.innerText=v;
+          parent.appendChild(errdiv);
+        })
+
+      }
+    }
+    if(data.success){
+      status.classList.add('text-success');
+      status.innerHTML=`<strong>${data.message}</strong>`;
+    }
   } catch (error) {
     
   }

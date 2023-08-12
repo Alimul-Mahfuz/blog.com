@@ -47,7 +47,7 @@ Route::middleware('user.guest')->group(function () {
 Route::middleware('user.auth')->group(function () {
     Route::get('dashboard',[DashboardController::class,'profile'])->name('user.profile');
     Route::post('/profile-basic/update',[DashboardController::class,'update_basicInfo'])->name('user.updateBasic');
-    Route::post('password/update',[DashboardController::class,'update_password']);
+    Route::post('password-update',[DashboardController::class,'update_password']);
     Route::resource('post', PostController::class);
     Route::post('cke-image/upload',[PostController::class,'cke_upload'])->name('user.post.cke-image');
     Route::post('profile_image/upload',[DashboardController::class,'profile_image_upload'])->name('user.profile-image-upload');
