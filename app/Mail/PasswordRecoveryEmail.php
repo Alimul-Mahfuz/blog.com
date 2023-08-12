@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\PasswordResetToken;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -16,9 +17,12 @@ class PasswordRecoveryEmail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
-    {
-        //
+    public $email;
+    public $token;
+    public function __construct($data)
+    {   
+        $this->email=$data->email;
+        $this->token=$data->token;
     }
 
     /**

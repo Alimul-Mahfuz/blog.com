@@ -26,10 +26,15 @@ Route::post('logout', [AuthenticationController::class, 'logout'])->name('user.l
 
 Route::middleware('user.guest')->group(function () {
     Route::get('login', [AuthenticationController::class, 'login'])->name('user.login');
+    Route::post('login', [AuthenticationController::class, 'login_post']);
     Route::get('register', [AuthenticationController::class, 'register'])->name('user.register');
     Route::post('register', [AuthenticationController::class, 'post_register']);
     Route::get('reset-request',[AuthenticationController::class,'reset_request'])->name('user.password-reset-request');
     Route::post('reset-request',[AuthenticationController::class,'reset_request_post']);
+    Route::get('reset-password/{email}/{token}',[AuthenticationController::class,'reset_password'])->name('user.reset-password');
+    Route::post('update-password/submit}',[AuthenticationController::class,'update_password'])->name('user.update-password');
+
+
 
     //Google
     Route::get('/auth/google/redirect', [AuthenticationController::class, 'google_singin_redirect'])->name('user.google_redirect');
@@ -48,6 +53,5 @@ Route::middleware('user.auth')->group(function () {
 
 Route::get('read-blog/{id}',[HomeController::class,'read_blog'])->name('user.read');
 // Route::get('/mailable', function () {
-//     $user=User::find(1);
-//     return new PasswordRecoveryEmail($user);
+//    return new PasswordRecoveryEmail();
 // });
