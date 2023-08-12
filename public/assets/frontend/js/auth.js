@@ -55,11 +55,9 @@ document.getElementById('personal-details-form').addEventListener('submit',async
     if(!response.ok){
       if(response.status==422){
         let perviousError=document.querySelectorAll('.personal-update-error')
-        console.log(perviousError);
-        // perviousError.forEach((errofield)=>{
-        //   console.log(errofield.innerText)
-        //   errofield.textContent='';
-        // })
+        perviousError.forEach((errofield)=>{
+          errofield.textContent=''
+        })
         Object.entries(data).forEach(([k,v])=>{
           let parent=document.getElementById(k).parentNode;
           let errdiv=document.createElement('div')
@@ -96,7 +94,7 @@ document.getElementById('password-update').addEventListener('submit',async funct
     status.innerHTML=''
     if(!response.ok){
       if(response.status==422){
-        let perviousError=document.querySelectorAll('.personal-update-error')
+        let perviousError=document.querySelectorAll('.password-update-error')
         perviousError.forEach((errofield)=>{
           errofield.textContent=''
         })
