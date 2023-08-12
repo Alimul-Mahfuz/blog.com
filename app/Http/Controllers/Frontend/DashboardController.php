@@ -83,12 +83,12 @@ class DashboardController extends Controller
         if($isok){
             $user->password=Hash::make($request->password);
             return response()->json([
-                'status'=>true,
+                'success'=>true,
                 'message'=>"Password changed successfully!"
             ]);
         }
         return response()->json([
-            'status'=>false,
+            'success'=>false,
             'message'=>"Current password mismatched"
         ]);
         

@@ -96,7 +96,7 @@ document.getElementById('password-update').addEventListener('submit',async funct
       if(response.status==422){
         let perviousError=document.querySelectorAll('.password-update-error')
         perviousError.forEach((errofield)=>{
-          errofield.textContent=''
+          errofield.remove();
         })
         Object.entries(data).forEach(([k,v])=>{
           let parent=document.getElementById(k).parentNode;
@@ -109,7 +109,12 @@ document.getElementById('password-update').addEventListener('submit',async funct
       }
     }
     if(data.success){
+      document.getElementById('password-update').reset()
       status.classList.add('text-success');
+      status.innerHTML=`<strong>${data.message}</strong>`;
+    }
+    else{
+      status.classList.add('text-danger');
       status.innerHTML=`<strong>${data.message}</strong>`;
     }
   } catch (error) {

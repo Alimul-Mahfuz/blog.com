@@ -73,7 +73,6 @@
                                         src="{{ asset('assets/frontend/icons/system/lock-icon.png') }}"
                                         alt="">&nbsp;&nbsp;<b>Change password</b>
                                 </div>
-
                                 <div class="card-body p-3">
                                     <form method="post" id="password-update">
                                         @csrf
@@ -88,7 +87,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="confirmPassword" class="form-label">Re-enter new password</label>
-                                            <input type="password" class="form-control" id="confirmPassword">
+                                            <input type="password" class="form-control" name="password_confirmation" id="confirmPassword">
                                         </div>
                                         <div class="d-flex justify-content-between">
                                             <div class="form-text" id="password-info-status"></div>
@@ -97,8 +96,6 @@
                                         </div>
                                     </form>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
