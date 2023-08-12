@@ -3,8 +3,14 @@ A small blogging website where a user can create an account by email or social m
 
 * Homepage
 <figure>
-    <img src="https://github.com/Alimul-Mahfuz/blog.com/assets/74812296/6b51b52d-2def-43c2-b2ab-bb95ab5d5413" width:540
+    <img src="https://github.com/Alimul-Mahfuz/blog.com/assets/74812296/6b51b52d-2def-43c2-b2ab-bb95ab5d5413" width:540 
          alt="Blog.com homepage">
     <figcaption>Homepage blog.com</figcaption>
+</figure>
+* login page
+<figure>
+    <img src="[https://github.com/Alimul-Mahfuz/blog.com/assets/74812296/6b51b52d-2def-43c2-b2ab-bb95ab5d5413" width:540
+         alt="Blog.com login">
+    <figcaption>Login page blog.com</figcaption>
 </figure>
 
