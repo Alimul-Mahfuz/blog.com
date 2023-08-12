@@ -278,10 +278,10 @@ CREATE TABLE `users` (
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` VALUES
-(4,'ACTINIUM BINARY','actiniumbinary@gmail.com',NULL,'userimage/1691827850login-bg.png',NULL,NULL,'2023-08-09 00:11:55','2023-08-12 09:47:24'),
-(6,'Alimul Mahfuz Tushar','alimulmahfuztushar@gmail.com',NULL,'https://lh3.googleusercontent.com/a/AAcHTteIUq6jb9W7mxEUFmzNleTMdvV0_tj9Eo1Ej7fO5WGfVw=s96-c',NULL,NULL,'2023-08-10 10:40:54','2023-08-10 10:40:54'),
+(4,'ACTINIUM BINARY','actinium@gmail.com',NULL,'userimage/1691827850login-bg.png',NULL,NULL,'2023-08-09 00:11:55','2023-08-12 09:47:24'),
+(6,'Alimul Mahfuz','alimul@gmail.com',NULL,'https://lh3.googleusercontent.com/a/AAcHTteIUq6jb9W7mxEUFmzNleTMdvV0_tj9Eo1Ej7fO5WGfVw=s96-c',NULL,NULL,'2023-08-10 10:40:54','2023-08-10 10:40:54'),
 (7,'Abdul Wazed','abdulwazedsobuz@gmail.com',NULL,'userimage/1691856917images.jpeg','$2y$10$taLlRMiQWjIg4AVx0i.S0ewag7csyY38M2lBxwhjAEV7kun2dPeCK',NULL,'2023-08-12 09:44:27','2023-08-12 10:15:17'),
-(8,'Alimul Mahfuz Tushar','alimulmahfuztushar998@hotmail.com',NULL,'userimage/1691860411Alimul_Tushar.jpg','$2y$10$7q7eNMmGTRdmYxQjEB3QYejfQVe6KNzROUjOf6vQVT/jhbf4VAE0.',NULL,'2023-08-12 11:13:14','2023-08-12 11:13:31');
+(8,'Alimul Tushar','alimul998@hotmail.com',NULL,'userimage/1691860411Alimul_Tushar.jpg','$2y$10$7q7eNMmGTRdmYxQjEB3QYejfQVe6KNzROUjOf6vQVT/jhbf4VAE0.',NULL,'2023-08-12 11:13:14','2023-08-12 11:13:31');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
