@@ -6,6 +6,11 @@
                 {{ session('success') }}
             </x-alert>
         @endif
+        @if (session()->has('status'))
+        <x-alert type='success'>
+            {{ session('status') }}
+        </x-alert>
+        @endif
         <div class="row row-cols-1 row-cols-md-3 g-4">
             @foreach ($posts as $post)
                 <div class="col">

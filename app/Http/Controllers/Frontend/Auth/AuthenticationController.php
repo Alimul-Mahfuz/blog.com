@@ -24,10 +24,11 @@ class AuthenticationController extends Controller
     {
         return view('frontend.auth.login');
     }
-    function login_post(Request $request){
+    function login_post(Request $request)
+    {
         $request->validate([
-            'email'=>'required',
-            'password'=>'required',
+            'email' => 'required',
+            'password' => 'required',
         ]);
         $do_remember = $request->has('remember');
         if (Auth::attempt($request->only('email', 'password'), $do_remember)) {
@@ -52,7 +53,8 @@ class AuthenticationController extends Controller
         }
 
     }
-    function reset_request(){
+    function reset_request()
+    {
         return view('frontend.auth.reset-request');
     }
     function google_singin_redirect()
@@ -110,57 +112,80 @@ class AuthenticationController extends Controller
     //     }
     // }
 
-    function logout(Request $request){
+    function logout(Request $request)
+    {
         Auth::logout();
         session()->flush();
         session()->regenerate();
         return redirect()->route('home');
     }
 
-    function reset_request_post(Request $request){
+    function reset_request_post(Request $request)
+    {
         // return response()->json("Hello Peter");
-        $validator=Validator::make($request->all(),[
-            'email'=>'required'
+        $validator = Validator::make($request->all(), [
+            'email' => 'required'
         ]);
         // return response()->json($request->all());
-        if($validator->fails()){
-            return response()->json($validator->errors(),422);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
         }
-        $is_exists=User::where('email',$request->email)->first();
-        if(!$is_exists){
-            return response()->json(['is_exists'=>false]);
+        $is_exists = User::where('email', $request->email)->first();
+        if (!$is_exists) {
+            return response()->json(['is_exists' => false]);
         }
-        $resetToken=new PasswordResetToken();
-        $resetToken->email=$request->email;
-        $resetToken->token=Str::random(64);
-        $resetToken->created_at=Carbon::now();
-        $resetToken->save();
+        $resetToken = DB::table('password_reset_tokens')->where('email', $request->email)->first();
+        if ($resetToken==null) {
+            $resetToken = DB::table('password_reset_tokens')->insert([
+                'email' => $request->email,
+                'token' => Str::random(64),
+                'created_at' => Carbon::now(),
+            ]);
+        }
         Mail::to($request->email)->send(new PasswordRecoveryEmail($resetToken));
         return response()->json([
-            'is_exists'=>true,
-            'email'=>$request->email,
+            'is_exists' => true,
+            'email' => $request->email,
         ]);
     }
 
-    function reset_password($email,$token){
-        $token=PasswordResetToken::where('email',$email)->where('token',$token)->first();
-        if($token){
-            return view('frontend.auth.new-password',compact('email'));
+    function reset_password($email, $token)
+    {
+        $token = PasswordResetToken::where('email', $email)->where('token', $token)->first();
+        if ($token) {
+            return view('frontend.auth.new-password', compact('email'));
         }
         return "Invalid Request!";
     }
 
-    function update_password(Request $request){
+    function update_password(Request $request)
+    {
         $request->validate([
-            'email'=>'required',
-            'password'=>'required|confirmed'
+            'email' => 'required',
+            'password' => 'required|confirmed'
         ]);
-        $user=User::where('email',$request->email)->first();
-        $user->password=Hash::make($request->password);
+        $user = User::where('email', $request->email)->first();
+        $user->password = Hash::make($request->password);
         $user->save();
-        DB::table('password_reset_tokens')->where('email',$request->email)->delete();
-        return redirect()->route('user.login')->with('success','Password updated successfully!');
+        DB::table('password_reset_tokens')->where('email', $request->email)->delete();
+        return redirect()->route('user.login')->with('success', 'Password updated successfully!');
 
+    }
+
+    function test()
+    {
+        // $data = DB::table('password_reset_tokens')->where('email', 'alimulmahfuztushar@gmail.com')->first();
+        // dd($data);
+        $resetToken = DB::table('password_reset_tokens')->where('email', 'alimulmahfuztushar@gmail.com')->first();
+        if ($resetToken==null) {
+            $resetToken = DB::table('password_reset_tokens')->insert([
+                'email' => 'alimulmahfuztushar@gmail.com',
+                'token' => Str::random(64),
+                'created_at' => Carbon::now(),
+            ]);
+        }
+        Mail::to('alimulmahfuztushar@gmail.com')->send(new PasswordRecoveryEmail($resetToken));
+        dd($resetToken);
     }
 
 

@@ -90,11 +90,10 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->title = $request->title;
         $post->description = $request->blog_body;
+        $coverImagePath = $post->cover_image;
         if ($request->hasFile('cover_image')) {
-            if (Storage::exists('app/' . $post->cover_image)) {
-                Storage::delete('app/' . $post->cover_image);
-                dd("HELLO");
-            } else {
+            if (Storage::exists('public/' . $coverImagePath)) {
+                Storage::delete('public/' . $post->cover_image);
                 $file = $request->file('cover_image');
                 $ext = $file->getClientOriginalExtension();
                 $filename = time() . '.' . $ext;
@@ -102,7 +101,6 @@ class PostController extends Controller
                 $path = "post_covers/" . $filename;
                 $post->cover_image = $path;
             }
-
         }
         $post->save();
         return redirect()->back()->with('success', 'Post updated susccessfully!');
@@ -113,6 +111,17 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        return "Hi from destroy method";
+        $post = Post::find($id);
+        if ($post) {
+            $post->delete();
+            if (Storage::exists('public/' . $post->cover_image)) {
+                Storage::delete('public/' . $post->cover_image);
+            }
+            session()->flash('status','Post deleted successfully!');
+            return redirect()->route('post.index');
+        } else {
+            abort(404,'Post no found');
+        }
+
     }
 }

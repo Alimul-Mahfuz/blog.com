@@ -39,7 +39,7 @@
                                 <a class="btn bg-lavender dropdown-toggle border border-1 rounded border-dark" style="font-size: 10pt;" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     {{Auth::user()->name}} 
-                                    <img class="avater-icon rounded rounded-circle" src="{{ $image = Auth::user()->profile_image ?? "https://img.icons8.com/fluency/48/user-male-circle.png"}}" alt="">
+                                    <img class="avater-icon rounded rounded-circle" src="{{ 'storage/'.$image = Auth::user()->profile_image ?? "https://img.icons8.com/fluency/48/user-male-circle.png"}}" alt="">
                                 </a>
 
                                 <ul class="dropdown-menu">

@@ -50,10 +50,35 @@
                     <div class="mb-3">
                         <div class="float-end">
                             <button class="d-inline-block btn btn-primary" type="submit">Save</button>
-                            <a href="{{route('post.destroy',['post'=>$post->id])}}" class="d-inline-block btn btn-danger">Delete</a>
+                            <button id="btn-del" type="button" class="d-inline-block btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#delete_confirmation_modal">Delete</button>
                         </div>
                     </div>
                 </form>
+                <!-- Modal -->
+                <div class="modal fade" id="delete_confirmation_modal" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="delete_confirmation_modalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="delete_confirmation_modalLabel">Modal title</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <form action="{{route('post.destroy',['post'=>$post->id])}}" method="post">
+                                @csrf
+                                @method('delete')
+                                <div class="modal-body">
+                                    <p>Are you sure to delete this post? Action cannot be undone</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Understood</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
