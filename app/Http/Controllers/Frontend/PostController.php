@@ -61,19 +61,26 @@ class PostController extends Controller
 
     /**
      * Display the specified resource.
+     * This will show detailed view of the post
      */
     public function show(string $id)
     {
         $post = Post::find($id);
+        $this->authorize('view',$post);
         return view('frontend.pages.viewblog', compact('post'));
     }
 
     /**
      * Show the form for editing the specified resource.
+     * @param mixed $id of post.
      */
-    public function edit(string $id)
+    public function edit(Request $request,string $id)
     {
-        $post = Post::find($id);
+        $post=Post::find($id);
+        $this->authorize('view',$post);
+        // if ($request->user()->cannot('view', $post)) {
+        //     abort(403);
+        // }
         return view('frontend.pages.editblog', compact('post'));
     }
 
@@ -88,6 +95,7 @@ class PostController extends Controller
         ]);
         // dd ($request->all());
         $post = Post::find($id);
+        $this->authorize('update',$post);
         $post->title = $request->title;
         $post->description = $request->blog_body;
         $coverImagePath = $post->cover_image;

@@ -7,6 +7,7 @@ use App\Http\Requests\RegisterFormRequest;
 use App\Mail\PasswordRecoveryEmail;
 use App\Models\PasswordResetToken;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -19,7 +20,10 @@ use Laravel\Socialite\Facades\Socialite;
 
 class AuthenticationController extends Controller
 {
-    //
+    /**
+     * @param none
+     * @method none login() to return the view page
+     */
     function login()
     {
         return view('frontend.auth.login');
@@ -61,6 +65,10 @@ class AuthenticationController extends Controller
     {
         return Socialite::driver('google')->redirect();
     }
+
+    /**
+     * @throws user not found exception
+     */
     function google_singin_callback()
     {
         try {
@@ -149,6 +157,12 @@ class AuthenticationController extends Controller
         ]);
     }
 
+    /**
+     * @param mixed $email the email that provided by the user for reset paassword
+     * @param mixed $token the password reset token that send to the user via email
+     * If the email and token matched the user will redirect to the view page of
+     * reset password
+     */
     function reset_password($email, $token)
     {
         $token = PasswordResetToken::where('email', $email)->where('token', $token)->first();
@@ -158,7 +172,11 @@ class AuthenticationController extends Controller
         return "Invalid Request!";
     }
 
-    function update_password(Request $request)
+    /**
+     * @return RedirectResponse to the route login where user can update the new password
+     * This function only responsible in case of forgot password of unauthenticated user. 
+     */
+    function update_password(Request $request):RedirectResponse
     {
         $request->validate([
             'email' => 'required',
@@ -174,8 +192,6 @@ class AuthenticationController extends Controller
 
     function test()
     {
-        // $data = DB::table('password_reset_tokens')->where('email', 'alimulmahfuztushar@gmail.com')->first();
-        // dd($data);
         $resetToken = DB::table('password_reset_tokens')->where('email', 'alimulmahfuztushar@gmail.com')->first();
         if ($resetToken==null) {
             $resetToken = DB::table('password_reset_tokens')->insert([
