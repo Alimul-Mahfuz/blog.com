@@ -7,6 +7,7 @@
     <x-carousel class="mb-3"/>
     <div class="blogs">
         {{-- {{$posts}} --}}
+        {{-- {{SayHello("TUSHAR")}} --}}
         <x-categoryholder :posts="$posts" />
     </div>
 @endsection

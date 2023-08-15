@@ -1,4 +1,4 @@
-<footer class="mt-5 border border-2 rounded border-start-0 border-end-0 border-bottom-0">
+<footer class="mt-5 rounded rounded-3">
     <style>
         .social-icon {
             width: 25px;
@@ -20,7 +20,7 @@
                 </div>
                 <div class="col">
                     <h4>Follow us on social media</h4>
-                    <div class="card border border-0" style="background: none">
+                    <div class="card border-0" style="background: none">
                         <div class="card-body px-0 d-flex justify-content-start align-items-center">
                             <div>
                                 <img class="social-icon me-1"

@@ -10,9 +10,9 @@
                     <a href="{{URL::previous()}}"><i class="fa-solid fa-arrow-left"></i></a>&nbsp;&nbsp;{{ $post->title }}
                 </div>
                 <div class="card-body">
-                    <div class="card border border-0 mb-3">
+                    <div class="card border-0 mb-3">
                         <img src="{{ asset('storage/' . $post->cover_image) }}"
-                            class="card-img-top img-fluid rounded rounded-0" style="max-height: 300px;" alt="...">
+                            class="card-img-top img-fluid rounded rounded-0" style="max-width:300px;" alt="...">
                         <div class="card-body p-0">
                             <p class="card-text">{!! $post->description !!}</p>
                             <p class="card-text"><small class="text-body-secondary">Posted by:&nbsp;&nbsp; <span><img

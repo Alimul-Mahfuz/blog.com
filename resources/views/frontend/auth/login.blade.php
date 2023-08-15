@@ -5,8 +5,10 @@
             width: 25px;
         }
 
-        #login-container {
-            background-image: url("{{asset('assets/frontend/images/login-bg.png')}}");
+        body {
+            background-image: url("{{ asset('assets/frontend/images/login-bg.png') }}");
+            /* background: rgb(247, 63, 225);
+                    background: linear-gradient(203deg, rgba(247, 63, 225, 1) 0%, rgba(159, 72, 230, 1) 43%, rgba(90, 50, 152, 1) 100%); */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -14,19 +16,20 @@
     </style>
 @endpush
 @section('content')
-    @if (session('success'))
-        <x-alert type='success'>
-            {{ session('success') }}
-        </x-alert>
-    @endif
     <section id="login-container">
         <div class="container min-vh-100 d-flex justify-content-center align-items-center">
             <form class="rounded rounded-3 p-3 frosted-glass" method="post">
                 @csrf
+                @if (session('failed'))
+                    <x-alert type='danger'>
+                        {{ session('failed') }}
+                    </x-alert>
+                @endif
                 <h1>Login</h1>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp">
                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                     @error('email')
                         <div class="text-danger">{{ $message }}</div>
@@ -44,12 +47,14 @@
                     <div class="social-btn row g-3 justify-content-between align-items-center">
                         <div class="col-12">
                             <button type="submit" class="me-3 w-100 btn btn-primary">Login</button><a
-                            href="{{ route('user.password-reset-request') }}" class="link-unstyled" style="color:black"><strong>Frogot password?</strong></a>
+                                href="{{ route('user.password-reset-request') }}" class="link-unstyled"
+                                style="color:black"><strong>Frogot password?</strong></a>
                         </div>
                         <div class="col-12">
                             <a href="{{ route('user.google_redirect') }}"><button type="button"
                                     class="btn btn-outline-secondary w-100"><img class="social-icon me-1"
-                                        src="{{ asset('assets/frontend/icons/social/google.png') }}" alt=""><small><strong class="text-white">Sing
+                                        src="{{ asset('assets/frontend/icons/social/google.png') }}"
+                                        alt=""><small><strong class="text-white">Sing
                                             with
                                             Google</strong></small></span></button></a>
                         </div>

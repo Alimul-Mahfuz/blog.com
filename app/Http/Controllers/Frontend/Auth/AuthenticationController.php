@@ -38,6 +38,9 @@ class AuthenticationController extends Controller
         if (Auth::attempt($request->only('email', 'password'), $do_remember)) {
             return redirect()->route('home');
         }
+        else{
+            return redirect()->back()->with('failed','Email or password is invalid');
+        }
     }
     function register()
     {
@@ -72,7 +75,7 @@ class AuthenticationController extends Controller
     function google_singin_callback()
     {
         try {
-            $user = Socialite::driver('google')->user();
+            $user = Socialite::driver('google')->stateless()->user();
             // dd ($user);
             $email = $user->email;
             $existingUser = User::where('email', $email)->first();
