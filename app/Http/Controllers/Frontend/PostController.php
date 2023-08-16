@@ -66,7 +66,7 @@ class PostController extends Controller
     public function show(string $id)
     {
         $post = Post::find($id);
-        $this->authorize('view',$post);
+        $this->authorize('view', $post);
         return view('frontend.pages.viewblog', compact('post'));
     }
 
@@ -74,10 +74,10 @@ class PostController extends Controller
      * Show the form for editing the specified resource.
      * @param mixed $id of post.
      */
-    public function edit(Request $request,string $id)
+    public function edit(Request $request, string $id)
     {
-        $post=Post::find($id);
-        $this->authorize('view',$post);
+        $post = Post::find($id);
+        $this->authorize('view', $post);
         // if ($request->user()->cannot('view', $post)) {
         //     abort(403);
         // }
@@ -95,7 +95,7 @@ class PostController extends Controller
         ]);
         // dd ($request->all());
         $post = Post::find($id);
-        $this->authorize('update',$post);
+        $this->authorize('update', $post);
         $post->title = $request->title;
         $post->description = $request->blog_body;
         $coverImagePath = $post->cover_image;
@@ -125,11 +125,30 @@ class PostController extends Controller
             if (Storage::exists('public/' . $post->cover_image)) {
                 Storage::delete('public/' . $post->cover_image);
             }
-            session()->flash('status','Post deleted successfully!');
+            session()->flash('status', 'Post deleted successfully!');
             return redirect()->route('post.index');
         } else {
-            abort(404,'Post no found');
+            abort(404, 'Post no found');
         }
 
+    }
+
+    public function post_search($query = '')
+    {
+        if ($query === '') {
+            $post = '';
+        } else {
+            $post = Post::select('title','id')->where('title', 'like', '%' . $query . '%')->get();
+        }
+        return response()->json($post,200);
+    }
+
+    public function user_search($query=''){
+        if ($query === '') {
+            $post = '';
+        } else {
+            $post = Post::select('title','id')->where('title', 'like', '%' . $query . '%')->where('user_id',Auth::user()->id)->get();
+        }
+        return response()->json($post,200);
     }
 }

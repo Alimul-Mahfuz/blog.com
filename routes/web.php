@@ -51,8 +51,10 @@ Route::middleware('user.auth')->group(function () {
     Route::resource('post', PostController::class);
     Route::post('cke-image/upload',[PostController::class,'cke_upload'])->name('user.post.cke-image');
     Route::post('profile_image/upload',[DashboardController::class,'profile_image_upload'])->name('user.profile-image-upload');
+    Route::get('user-post/search/{query?}',[PostController::class,'user_search']);
 });
 
+Route::get('post-search/{query?}',[PostController::class,'post_search']);
 
 Route::get('read-blog/{id}',[HomeController::class,'read_blog'])->name('user.read');
 // Route::get('/mailable', function () {
