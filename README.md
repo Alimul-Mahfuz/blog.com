@@ -17,22 +17,23 @@ A small blogging website where a user can create an account by email or social m
 * User's dashboard where he can manage his blog post
 <figure>
     <img src="https://github.com/Alimul-Mahfuz/blog.com/assets/74812296/609a2087-ea5e-408a-b87e-90e7e9c5589c" width:540
-         alt="Blog.com login">
+         alt="Blog.com user dashboard">
     <figcaption>Login page blog.com</figcaption>
 </figure>
 
 * User's profile pages to edit his profile
 <figure>
     <img src="https://github.com/Alimul-Mahfuz/blog.com/assets/74812296/68b758c8-9831-4787-bd69-ea1d53d19e4c" width:540
-         alt="Blog.com login">
+         alt="edit profile page">
     <figcaption>Login page blog.com</figcaption>
 </figure>
 
 * Live search on user profile
 <figure>
-    <img src="https://github.com/Alimul-Mahfuz/blog.com/assets/74812296/217c8f3f-c631-4be6-8dae-87f57f4337a4" width:540
+    <img src="https://github.com/Alimul-Mahfuz/blog.com/assets/74812296/1d5f7d33-43b1-4dd7-8ac9-3845860e16d8" width:540
          alt="Blog.com login">
     <figcaption>Live search on user page blog.com</figcaption>
 </figure>
+
 
 
