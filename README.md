@@ -30,7 +30,7 @@ A small blogging website where a user can create an account by email or social m
 
 * Live search on user profile
 <figure>
-    <img src="[file:///home/amtushar/Pictures/Screenshots/Screenshot%20from%202023-08-17%2012-10-33.png](https://github.com/Alimul-Mahfuz/blog.com/assets/74812296/217c8f3f-c631-4be6-8dae-87f57f4337a4)" width:540
+    <img src="https://github.com/Alimul-Mahfuz/blog.com/assets/74812296/217c8f3f-c631-4be6-8dae-87f57f4337a4" width:540
          alt="Blog.com login">
     <figcaption>Live search on user page blog.com</figcaption>
 </figure>
