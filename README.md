@@ -28,5 +28,13 @@ A small blogging website where a user can create an account by email or social m
     <figcaption>Login page blog.com</figcaption>
 </figure>
 
+* Live search on user profile
+<figure>
+    <img src="file:///home/amtushar/Pictures/Screenshots/Screenshot%20from%202023-08-17%2012-10-33.png" width:540
+         alt="Blog.com login">
+    <figcaption>Login page blog.com</figcaption>
+</figure>
+
+
 
 
