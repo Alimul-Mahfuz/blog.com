@@ -6,7 +6,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-md-center">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
                 </li>
@@ -27,10 +27,14 @@
                 <li class="nav-item">
                     <a class="nav-link">Featured</a>
                 </li>
-                <li class="nav-item">
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2 border border-1 border-primary" type="search" placeholder="Search" aria-label="Search">
+                <li class="nav-item position-relative">
+                    <form class="d-flex" id="search-form" role="search">
+                        @csrf
+                        <input class="form-control me-2 border border-1 border-primary" type="text" placeholder="Search" aria-label="Search">
                     </form>
+                    <div class="card position-absolute w-100 rounded frosted" style="background-color: none">
+                        <div class="card-body d-block d-none" id="search-result-global"></div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     @if (Route::has('user.login'))
@@ -53,7 +57,7 @@
                                 </ul>
                             </div>
                         @else
-                            <a href="{{route('user.login')}}" class="btn btn-outline-primary">Login</a>
+                            <a href="{{route('user.login')}}" class="btn btn-outline-primary my-2 my-md-0">Login</a>
                         @endif
                     @endif
                 </li>
