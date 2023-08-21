@@ -33,9 +33,6 @@ Route::middleware('user.guest')->group(function () {
     Route::post('reset-request',[AuthenticationController::class,'reset_request_post']);
     Route::get('reset-password/{email}/{token}',[AuthenticationController::class,'reset_password'])->name('user.reset-password');
     Route::post('update-password/submit}',[AuthenticationController::class,'update_password'])->name('user.update-password');
-
-
-
     //Google
     Route::get('/auth/google/redirect', [AuthenticationController::class, 'google_singin_redirect'])->name('user.google_redirect');
     Route::get('/auth/google/callback', [AuthenticationController::class, 'google_singin_callback'])->name('user.google_callback');
@@ -57,6 +54,7 @@ Route::middleware('user.auth')->group(function () {
 Route::get('post-search/{query?}',[PostController::class,'post_search']);
 
 Route::get('read-blog/{id}',[HomeController::class,'read_blog'])->name('user.read');
+
 // Route::get('/mailable', function () {
 //    return new PasswordRecoveryEmail();
 // });

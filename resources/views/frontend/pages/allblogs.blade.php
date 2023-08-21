@@ -48,5 +48,5 @@
             {{ $posts->links() }}
         </div>
     </div>
-    <script src="{{asset('assets/frontend/js/livesearch.js')}}"></script>
+    <script type="text/javascript">LiveSearch("liveSearchByWithUserId","previewer")</script>
 @endsection
