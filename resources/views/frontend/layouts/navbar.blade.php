@@ -30,7 +30,7 @@
                 <li class="nav-item position-relative">
                     <form class="d-flex" id="search-form" role="search">
                         @csrf
-                        <input class="form-control me-2 border border-1 border-primary" type="text" placeholder="Search" aria-label="Search">
+                        <input class="form-control me-2 border border-1 border-primary" id="global_search_input" type="text" placeholder="Search" aria-label="Search">
                     </form>
                     <div class="card position-absolute w-100 rounded frosted" style="background-color: none">
                         <div class="card-body d-block d-none" id="search-result-global"></div>

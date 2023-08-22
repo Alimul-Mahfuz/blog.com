@@ -12,7 +12,8 @@
             </x-alert>
         @endif
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary mb-3 rounded rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#searchModal">
+        <button type="button" class="btn btn-primary mb-3 rounded rounded-pill px-3" data-bs-toggle="modal"
+            data-bs-target="#searchModal">
             <i class="fa-solid fa-magnifying-glass"></i> Search
         </button>
 
@@ -21,9 +22,11 @@
             <div class="modal-dialog">
                 <div class="modal-content position-relative">
                     <div class="modal-body">
-                        <input type="text" id="liveSearchByWithUserId" autocomplete="off" class="form-control w-100" placeholder="Search Your Blogs">
+                        <input type="text" id="liveSearchByWithUserId" autocomplete="off" class="form-control w-100"
+                            placeholder="Search Your Blogs">
                     </div>
-                    <div class="card position-absolute w-100 rounded frosted d-block d-none" id="previewer" style="top:80px;"></div>
+                    <div class="card position-absolute w-100 rounded frosted d-block d-none" id="previewer"
+                        style="top:80px;"></div>
                 </div>
             </div>
         </div>
@@ -48,5 +51,11 @@
             {{ $posts->links() }}
         </div>
     </div>
-    <script src="{{asset('assets/frontend/js/livesearch.js')}}"></script>
 @endsection
+@push('js')
+    <script type="text/javascript">
+        const localbaseurl = `user-post/search/`
+        // LiveSearch("liveSearchByWithUserId","previewer", baseurl)
+        LocalSearch("liveSearchByWithUserId","previewer", localbaseurl)
+    </script>
+@endpush
