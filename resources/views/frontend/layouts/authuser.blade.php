@@ -48,30 +48,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
     </script>
-    <script>
-        let inputData = document.querySelector('#search-form input[type=text]');
-        inputData.addEventListener('keyup', async function(e) {
-            const previewer = document.getElementById('search-result-global');
-            if (e.target.value === '') {
-                previewer.innerHTML = ''
-                previewer.classList.add('d-none')
-            }
-            try {
-                const url = `post-search/${encodeURIComponent(e.target.value)}`
-                const response = await fetch(url)
-                const data = await response.json();
-                previewer.innerHTML = '';
-                data.forEach(element => {
-                    const result = document.createElement('p');
-                    result.innerHTML = `<a href="read-blog/${element.id}">* ${element.title}</a>`
-                    previewer.appendChild(result);
-                });
-                previewer.classList.remove('d-none')
-            } catch (error) {
-
-            }
-        })
+    <script type="text/javascript">
+        const baseurl = `post-search/`
+        GlobalSearch('global_search_input', 'search-result-global', baseurl)
     </script>
+    @stack('js')
 </body>
 
 </html>
